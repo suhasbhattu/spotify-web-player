@@ -16,6 +16,7 @@ router.get("/", (req, res) => {
       const responseJson = {
         displayName: response.data.display_name,
       };
+      process.env['USER_ID'] = response.data.id;
       res.json(responseJson);
     } catch (error) {}
   };

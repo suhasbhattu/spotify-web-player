@@ -71,7 +71,7 @@ router.get("/logout", (req, res) => {
 
 router.get("/token", (req, res) => {
   res.json({
-    access_token: process.env.ACCESS_TOKEN,
+    accessToken: process.env.ACCESS_TOKEN ?? "",
   });
 });
 
