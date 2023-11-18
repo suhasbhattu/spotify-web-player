@@ -2,6 +2,13 @@ import { Nunito } from "next/font/google";
 import Providers from "@/redux/Provider";
 import "./globals.css";
 
+declare global {
+  interface Window {
+    onSpotifyWebPlaybackSDKReady: any;
+    Spotify: any;
+  }
+}
+
 const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",

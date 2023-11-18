@@ -16,3 +16,9 @@ export const getUserDetails = async () => {
   const response = await axios.get(`${baseUrl}/user`);
   return response;
 };
+
+export const transferPlayback = async (deviceId: string) => {
+  const body = { deviceId: deviceId };
+  const response = await axios.put(`${baseUrl}/player`, body);
+  return response;
+};

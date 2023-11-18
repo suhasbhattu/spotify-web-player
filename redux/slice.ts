@@ -4,12 +4,14 @@ export interface SliceState {
   accessToken: string;
   accessTokenFetched: boolean;
   userName: string;
+  webPlayer: any;
 }
 
 const initialState: SliceState = {
   accessToken: "",
   accessTokenFetched: false,
   userName: "",
+  webPlayer: undefined,
 };
 
 export const slice = createSlice({
@@ -24,6 +26,9 @@ export const slice = createSlice({
     },
     setUserName: (state, action: PayloadAction<string>) => {
       state.userName = action.payload;
+    },
+    setWebPlayer: (state, action: PayloadAction<any>) => {
+      state.webPlayer = action.payload;
     },
   },
 });

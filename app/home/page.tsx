@@ -6,9 +6,10 @@ import Image from "next/image";
 import { slice } from "@/redux/slice";
 import { useDispatch, useSelector } from "@/redux/store";
 import { selectUsername } from "@/redux/selectors";
-import { getUserDetails, logoutUser } from "@/service/service";
+import { getAccessToken, getUserDetails, logoutUser } from "@/service/service";
 
 import styles from "./styles.module.css";
+import WebPlayer from "./webPlayer";
 
 export const HomePage = () => {
   const userName = useSelector(selectUsername);
@@ -20,6 +21,12 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
+    const fetchAccessToken = async () => {
+      const response = await getAccessToken();
+      dispatch(slice.actions.setAccessToken(response.data.accessToken));
+      dispatch(slice.actions.setAccessTokenFetched(true));
+    };
+    fetchAccessToken();
     const fetchUserDetails = async () => {
       const response = await getUserDetails();
       dispatch(slice.actions.setUserName(response.data.displayName));
@@ -50,7 +57,9 @@ export const HomePage = () => {
       <div className={styles.content}>
         <h1 className="textColor font-bold text-xl">Playlists</h1>
       </div>
-      <div className={`${styles.webPlayer} themeBg`}></div>
+      <div className={`${styles.webPlayer} themeBg`}>
+        <WebPlayer />
+      </div>
     </div>
   );
 };

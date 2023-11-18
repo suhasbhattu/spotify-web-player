@@ -6,7 +6,13 @@ import {
   TypedUseSelectorHook,
 } from "react-redux";
 
-export const reduxStore = configureStore({ reducer });
+export const reduxStore = configureStore({
+  reducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
 export const ReduxDispatch = typeof reduxStore.dispatch;
 export const useDispatch = () => useReduxDispatch();
 export const useSelector: TypedUseSelectorHook<ReduxState> = useReduxSelector;
