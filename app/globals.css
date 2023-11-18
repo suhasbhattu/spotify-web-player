@@ -17,3 +17,7 @@ body {
 .themeBg {
   background-color: var(--theme-bg);
 }
+
+.textColor {
+  color: var(--theme-bg);
+}

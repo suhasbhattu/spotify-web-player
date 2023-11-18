@@ -1,0 +1,46 @@
+.homePage {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 4rem auto 6rem;
+  grid-template-areas: "header" "content" "webPlayer";
+  .header {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding-inline: 2rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .content {
+    grid-area: content;
+    padding: 2rem;
+  }
+  .webPlayer {
+    grid-area: webPlayer;
+    padding-inline: 2rem;
+  }
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  z-index: 1;
+}
+
+.dropdownIcon:hover .dropdown {
+  display: block;
+}
+
+.separator {
+  width: 5px;
+  height: 2rem;
+  border-right: solid #9881d5 2px;
+}

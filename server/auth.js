@@ -59,14 +59,14 @@ router.get("/callback", (req, res) => {
       }
     );
     process.env["ACCESS_TOKEN"] = response.data.access_token;
-    res.redirect("/");
+    res.redirect("http://localhost:3000/home");
   };
   getAccessToken();
 });
 
 router.get("/logout", (req, res) => {
   process.env["ACCESS_TOKEN"] = "";
-  res.redirect("/");
+  res.status(200).send({});
 });
 
 router.get("/token", (req, res) => {
