@@ -8,4 +8,9 @@ export const selectAccessTokenFetched = (state: ReduxState) =>
 
 export const selectUsername = (state: ReduxState) => state.webPlayer.userName;
 
+export const selectIsPaused = (state: ReduxState) => state.webPlayer.isPaused;
+
 export const selectWebPlayer = (state: ReduxState) => state.webPlayer.webPlayer;
+
+export const selectWebPlayerState = (state: ReduxState) =>
+  state.webPlayer.webPlayerState;

@@ -7,9 +7,9 @@ import { slice } from "@/redux/slice";
 import { useDispatch, useSelector } from "@/redux/store";
 import { selectUsername } from "@/redux/selectors";
 import { getAccessToken, getUserDetails, logoutUser } from "@/service/service";
+import WebPlayer from "./webPlayer";
 
 import styles from "./styles.module.css";
-import WebPlayer from "./webPlayer";
 
 export const HomePage = () => {
   const userName = useSelector(selectUsername);
