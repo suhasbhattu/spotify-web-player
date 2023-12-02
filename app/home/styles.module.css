@@ -72,7 +72,6 @@
 .slider::-moz-range-track {
   background-color: #ffffff;
   border-radius: 0.5rem;
-  height: 0.3rem;
 }
 
 .slider::-moz-range-thumb {
@@ -85,4 +84,11 @@
 
 .slider::-moz-range-progress {
   background-color: #9881d5;
+}
+
+.playlistTile {
+  background-color: var(--theme-bg);
+  cursor: pointer;
+  border-radius: 5px;
+  width: 201.5px;
 }

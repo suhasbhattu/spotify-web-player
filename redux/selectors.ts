@@ -14,3 +14,8 @@ export const selectWebPlayer = (state: ReduxState) => state.webPlayer.webPlayer;
 
 export const selectWebPlayerState = (state: ReduxState) =>
   state.webPlayer.webPlayerState;
+
+export const selectPlaylists = (state: ReduxState) => state.webPlayer.playlists;
+
+export const selectSelectedPlaylist = (state: ReduxState) =>
+  state.webPlayer.selectedPlaylist;

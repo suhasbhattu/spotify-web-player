@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import Providers from "@/redux/Provider";
 import "./globals.css";
@@ -13,6 +14,11 @@ const nunito = Nunito({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  title: 'Spotify Web Player',
+  description: 'The Web Player developed using Next js and Spotify Web Player SDK',
+}
 
 export const RootLayout = (props: React.PropsWithChildren) => {
   return (

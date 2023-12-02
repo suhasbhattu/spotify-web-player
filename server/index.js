@@ -4,6 +4,7 @@ const cors = require("cors");
 const auth = require("./auth");
 const user = require("./user");
 const player = require("./player");
+const playlists = require("./playlists");
 
 const app = express();
 const port = 5000;
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use("/auth", auth);
 app.use("/user", user);
 app.use("/player", player);
+app.use("/playlists", playlists);
 
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to Spotify Web Player !!</h1>");

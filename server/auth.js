@@ -24,7 +24,7 @@ const generateRandomString = (length) => {
 
 router.get("/login", (req, res) => {
   const scope =
-    "streaming user-read-email user-read-private user-read-currently-playing";
+    "streaming user-read-email user-read-private user-read-currently-playing playlist-read-collaborative playlist-read-private";
   const state = generateRandomString(32);
   const queryParams = new URLSearchParams({
     response_type: "code",

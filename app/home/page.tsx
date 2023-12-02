@@ -5,14 +5,21 @@ import { LogOutIcon } from "lucide-react";
 import Image from "next/image";
 import { slice } from "@/redux/slice";
 import { useDispatch, useSelector } from "@/redux/store";
-import { selectUsername } from "@/redux/selectors";
-import { getAccessToken, getUserDetails, logoutUser } from "@/service/service";
+import { selectSelectedPlaylist, selectUsername } from "@/redux/selectors";
+import {
+  getAccessToken,
+  getPlaylists,
+  getUserDetails,
+  logoutUser,
+} from "@/service/service";
+import PlaylistsList from "./playlistsList";
 import WebPlayer from "./webPlayer";
 
 import styles from "./styles.module.css";
 
 export const HomePage = () => {
   const userName = useSelector(selectUsername);
+  const selectedPlaylist = useSelector(selectSelectedPlaylist);
   const dispatch = useDispatch();
 
   const onLogoutClick = async () => {
@@ -32,6 +39,11 @@ export const HomePage = () => {
       dispatch(slice.actions.setUserName(response.data.displayName));
     };
     fetchUserDetails();
+    const getUsersPlaylists = async () => {
+      const response = await getPlaylists();
+      dispatch(slice.actions.setPlaylists(response.data.items));
+    };
+    getUsersPlaylists();
   }, [dispatch]);
 
   return (
@@ -55,7 +67,7 @@ export const HomePage = () => {
         </div>
       </div>
       <div className={styles.content}>
-        <h1 className="textColor font-bold text-xl">Playlists</h1>
+        {selectedPlaylist === null && <PlaylistsList />}
       </div>
       <div className={`${styles.webPlayer} themeBg`}>
         <WebPlayer />

@@ -11,6 +11,26 @@ export interface WebPlayerState {
   volume: number;
 }
 
+export interface PlaylistSummary {
+  id: string;
+  name: string;
+  thumbnail: string;
+  tracksCount: number;
+}
+
+export interface TrackSummary {
+  id: string;
+  name: string;
+  artists: string;
+  albumName: string;
+  duration: number;
+  thumbnail: string;
+}
+
+export interface Playlist extends PlaylistSummary {
+  tracks: TrackSummary[];
+}
+
 interface SliceState {
   accessToken: string;
   accessTokenFetched: boolean;
@@ -18,6 +38,8 @@ interface SliceState {
   isPaused: boolean;
   webPlayer: any;
   webPlayerState: WebPlayerState;
+  playlists: PlaylistSummary[];
+  selectedPlaylist: Playlist | null;
 }
 
 const initialState: SliceState = {
@@ -36,6 +58,8 @@ const initialState: SliceState = {
     duration: "",
     volume: 50,
   },
+  playlists: [],
+  selectedPlaylist: null,
 };
 
 export const slice = createSlice({
@@ -68,6 +92,12 @@ export const slice = createSlice({
     },
     setVolume: (state, action: PayloadAction<number>) => {
       state.webPlayerState.volume = action.payload;
+    },
+    setPlaylists: (state, action: PayloadAction<PlaylistSummary[]>) => {
+      state.playlists = action.payload;
+    },
+    setSelectedPlaylist: (state, action: PayloadAction<Playlist | null>) => {
+      state.selectedPlaylist = action.payload;
     },
   },
 });

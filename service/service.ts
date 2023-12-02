@@ -22,3 +22,13 @@ export const transferPlayback = async (deviceId: string) => {
   const response = await axios.put(`${baseUrl}/player`, body);
   return response;
 };
+
+export const getPlaylists = async () => {
+  const response = await axios.get(`${baseUrl}/playlists`);
+  return response;
+};
+
+export const getPlaylistById = async (id: string) => {
+  const response = await axios.get(`${baseUrl}/playlists/${id}`);
+  return response;
+};
