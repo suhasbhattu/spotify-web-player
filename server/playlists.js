@@ -55,16 +55,18 @@ router.get("/:id", (req, res) => {
       let tracksResponse = playlistResponse.tracks.items;
       const total = playlistResponse.tracks.total;
       const page = total % 50 ? total / 50 : Math.floor(total / 50) + 1;
-      for (let index = 2; index < page; index++) {
-        const params = {
-          limit: 50,
-          offset: 50 * index,
-        };
-        const nextResponse = await axios.get(
-          `https://api.spotify.com/v1/playlists/${id}/tracks`,
-          { headers: headers, params: params }
-        );
-        tracksResponse = tracksResponse.concat(nextResponse.data.items);
+      if (total > 100) {
+        for (let index = 2; index < page; index++) {
+          const params = {
+            limit: 50,
+            offset: 50 * index,
+          };
+          const nextResponse = await axios.get(
+            `https://api.spotify.com/v1/playlists/${id}/tracks`,
+            { headers: headers, params: params }
+          );
+          tracksResponse = tracksResponse.concat(nextResponse.data.items);
+        }
       }
       const tracks = tracksResponse.map((item) => {
         return {
@@ -73,7 +75,10 @@ router.get("/:id", (req, res) => {
           artists: item.track.artists.map((artist) => artist.name).join(", "),
           albumName: item.track.album.name,
           duration: item.track.duration_ms,
-          thumbnail: item.track.album.images[2].url,
+          thumbnail:
+            item.track.album.images.length > 0
+              ? item.track.album.images[2].url
+              : "",
         };
       });
       const responseJson = {
@@ -85,6 +90,7 @@ router.get("/:id", (req, res) => {
       };
       res.json(responseJson);
     } catch (error) {
+      console.log(error);
       res.json(error);
     }
   };

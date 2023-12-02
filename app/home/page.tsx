@@ -13,6 +13,7 @@ import {
   logoutUser,
 } from "@/service/service";
 import PlaylistsList from "./playlistsList";
+import Playlist from "./playlist";
 import WebPlayer from "./webPlayer";
 
 import styles from "./styles.module.css";
@@ -28,22 +29,16 @@ export const HomePage = () => {
   };
 
   useEffect(() => {
-    const fetchAccessToken = async () => {
-      const response = await getAccessToken();
-      dispatch(slice.actions.setAccessToken(response.data.accessToken));
+    const prepareData = async () => {
+      const tokenResponse = await getAccessToken();
+      dispatch(slice.actions.setAccessToken(tokenResponse.data.accessToken));
       dispatch(slice.actions.setAccessTokenFetched(true));
+      const userResponse = await getUserDetails();
+      dispatch(slice.actions.setUserName(userResponse.data.displayName));
+      const playlistResponse = await getPlaylists();
+      dispatch(slice.actions.setPlaylists(playlistResponse.data.items));
     };
-    fetchAccessToken();
-    const fetchUserDetails = async () => {
-      const response = await getUserDetails();
-      dispatch(slice.actions.setUserName(response.data.displayName));
-    };
-    fetchUserDetails();
-    const getUsersPlaylists = async () => {
-      const response = await getPlaylists();
-      dispatch(slice.actions.setPlaylists(response.data.items));
-    };
-    getUsersPlaylists();
+    prepareData();
   }, [dispatch]);
 
   return (
@@ -68,6 +63,7 @@ export const HomePage = () => {
       </div>
       <div className={styles.content}>
         {selectedPlaylist === null && <PlaylistsList />}
+        {selectedPlaylist !== null && <Playlist />}
       </div>
       <div className={`${styles.webPlayer} themeBg`}>
         <WebPlayer />

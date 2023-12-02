@@ -13,7 +13,7 @@ export const PlaylistsList = () => {
   const onPlaylistClick = (id: string) => {
     const getPlaylistDetails = async () => {
       const response = await getPlaylistById(id);
-      dispatch(slice.actions.setSelectedPlaylist(response.data.items));
+      dispatch(slice.actions.setSelectedPlaylist(response.data));
     };
     getPlaylistDetails();
   };
