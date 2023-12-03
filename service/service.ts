@@ -32,3 +32,9 @@ export const getPlaylistById = async (id: string) => {
   const response = await axios.get(`${baseUrl}/playlists/${id}`);
   return response;
 };
+
+export const playTrack = async (contextUri: string) => {
+  const body = { contextUri: contextUri };
+  const response = await axios.put(`${baseUrl}/player/play`, body);
+  return response;
+};

@@ -25,6 +25,7 @@ export interface TrackSummary {
   albumName: string;
   duration: number;
   thumbnail: string;
+  contextUri: string;
 }
 
 export interface Playlist extends PlaylistSummary {

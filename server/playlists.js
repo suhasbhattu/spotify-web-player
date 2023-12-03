@@ -75,6 +75,7 @@ router.get("/:id", (req, res) => {
           artists: item.track.artists.map((artist) => artist.name).join(", "),
           albumName: item.track.album.name,
           duration: item.track.duration_ms,
+          contextUri: item.track.uri ?? '',
           thumbnail:
             item.track.album.images.length > 0
               ? item.track.album.images[2].url

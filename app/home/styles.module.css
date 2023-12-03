@@ -1,7 +1,7 @@
 .homePage {
   height: 100vh;
   display: grid;
-  grid-template-rows: 4rem auto 6rem;
+  grid-template-rows: 5rem auto 7rem;
   grid-template-areas: "header" "content" "webPlayer";
   .header {
     grid-area: header;
@@ -9,16 +9,19 @@
     flex-direction: row;
     gap: 1rem;
     padding-inline: 2rem;
+    margin-block-end: 1rem;
     align-items: center;
     justify-content: space-between;
   }
   .content {
     grid-area: content;
-    padding: 2rem;
+    padding-inline: 2rem;
+    overflow: auto;
   }
   .webPlayer {
     grid-area: webPlayer;
     padding-inline: 2rem;
+    margin-block-start: 1rem;
   }
 }
 
@@ -91,4 +94,40 @@
   cursor: pointer;
   border-radius: 5px;
   width: 201.5px;
+}
+
+.playlistDetails {
+  display: grid;
+  grid-template-rows: 24px 150px auto;
+  grid-template-areas: "backButton" "playlistTileSection" "tracksList";
+  gap: 1rem;
+  block-size: 100%;
+  .backButton {
+    grid-area: backButton;
+  }
+  .playlistTileSection {
+    grid-area: playlistTileSection;
+  }
+  .tracksList {
+    grid-area: tracksList;
+    overflow: auto;
+  }
+}
+
+.playlistTrack {
+  display: grid;
+  grid-template-columns: 5% auto 35% 10%;
+  grid-template-areas: "albumThumbnail trackName albumName trackDuration";
+  .albumThumbnail {
+    grid-area: albumThumbnail;
+  }
+  .trackName {
+    grid-area: trackName;
+  }
+  .albumName {
+    grid-area: albumName;
+  }
+  .trackDuration {
+    grid-area: trackDuration;
+  }
 }
